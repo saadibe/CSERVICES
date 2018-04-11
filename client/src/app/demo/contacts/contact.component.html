@@ -1,0 +1,31 @@
+<h3 highlight>Contact List</h3>
+<div *ngFor='let contact of contacts'>
+  <a (click)="onContactSelected(contact)" class="selectme">{{contact.getId()}} - {{contact.getLastName()}} - {{contact.getFirstName()}}</a>
+</div>
+<br/>
+<h3 highlight>Contact Detail</h3>
+<div>ID: {{selectedContact != null ? selectedContact.getId() : ''}}</div>
+<div>Last Name: {{selectedContact != null ? selectedContact.getLastName() : ''}}</div>
+<div>First Name: {{selectedContact != null ? selectedContact.getFirstName() : ''}}</div>
+<div>Mail: {{selectedContact != null ? selectedContact.getEMail() : ''}}</div>
+<div>Phone: {{selectedContact != null ? selectedContact.getPhone() : ''}}</div>
+<br/>
+<br/>
+
+<h3 highlight>Créer un nouveau contact</h3>
+  <form [formGroup]="creationForm" (ngSubmit)="createContact()" >
+    <label class="">Last Name</label>
+    <input class="" formControlName="lastName" type="text" />
+
+    <label class="">First Name</label>
+    <input class="" formControlName="firstName" type="text" />
+
+    <label class="">Mail</label>
+    <input class="" formControlName="email" type="text" />
+
+    <label class="">Phone</label>
+    <input class="" formControlName="phone" type="text" />
+
+    <button type="submit" class="button is-small" [disabled]="!creationForm.valid">Create !</button>
+  </form>
+<br/>

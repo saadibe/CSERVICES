@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE application PUBLIC
+	"-//Sun Microsystems, Inc.//DTD J2EE Application 1.3//EN"
+	"http://java.sun.com/dtd/application_1_3.dtd">
+<application id="CSERVICES_SERV_WAR">
+  <display-name>CSERVICES_SERV_WAR</display-name>
+  <description>CSERVICES_SERV_WAR</description>
+  <module>
+    <web>
+      <web-uri>CSERVICES_SERV_WAR.war</web-uri>
+      <context-root>CSERVICES_SERV_WAR</context-root>
+    </web>
+  </module>
+</application>

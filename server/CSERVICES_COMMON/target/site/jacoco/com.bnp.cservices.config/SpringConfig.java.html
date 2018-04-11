@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SpringConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CSERVICES_COMMON</a> &gt; <a href="index.source.html" class="el_package">com.bnp.cservices.config</a> &gt; <span class="el_source">SpringConfig.java</span></div><h1>SpringConfig.java</h1><pre class="source lang-java linenums">package com.bnp.cservices.config;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.core.env.Environment;
+
+import java.util.Properties;
+
+/**
+ * Global Spring configuration class for all Spring conf classes.
+ * Allow them to easily access properties and beans.
+ *
+ * @author itametis (chloe.mahalin@itametis.com)
+ */
+public class SpringConfig implements ApplicationContextAware {
+
+<span class="nc" id="L20">    private static final Logger LOGGER = LoggerFactory.getLogger(SpringConfig.class.getCanonicalName());</span>
+
+    @Autowired
+    private ApplicationContext context;
+
+    @Autowired
+    private final Environment env;
+
+
+    /**
+     * Make the environment available for every config class.
+     *
+     * @param environment the spring environment.
+     */
+<span class="nc" id="L34">    protected SpringConfig(Environment environment) {</span>
+<span class="nc" id="L35">        this.env = environment;</span>
+<span class="nc" id="L36">    }</span>
+
+
+    /**
+     * Returns the shared Spring context (by all the configuration classes).
+     *
+     * @return The common Spring context.
+     */
+    protected ApplicationContext getContext() {
+<span class="nc" id="L45">        return this.context;</span>
+    }
+
+
+    /**
+     * The Spring environment.
+     *
+     * @return the environment.
+     */
+    protected Environment getEnvironment() {
+<span class="nc" id="L55">        return this.env;</span>
+    }
+
+
+    /**
+     * Return a property from a property file.
+     *
+     * @param key the key to find the property.
+     * @return the value of the property.
+     */
+    protected String getProperty(String key) {
+<span class="nc" id="L66">        String prop = this.env.getProperty(key);</span>
+<span class="nc" id="L67">        LOGGER.debug(&quot;Property loaded '{}' as String&quot;, key);</span>
+<span class="nc" id="L68">        return prop;</span>
+    }
+
+
+    /**
+     * Return a property from a property file as the given type.
+     *
+     * @param key  the key to find the property.
+     * @param type the expected type of the property.
+     * @param &lt;T&gt;  the type of the property.
+     * @return the value of the property.
+     */
+    protected &lt;T&gt; T getProperty(String key, Class&lt;T&gt; type) {
+<span class="nc" id="L81">        T prop = this.env.getProperty(key, type);</span>
+<span class="nc" id="L82">        LOGGER.debug(&quot;Property loaded '{}' as {}&quot;, key, type.getSimpleName());</span>
+<span class="nc" id="L83">        return prop;</span>
+    }
+
+
+    /**
+     * Add a new property from Spring context in the props property holder.
+     *
+     * @param key   the key to the property.
+     * @param props the property holder getting properties from Spring context.
+     */
+    protected void putProperties(String key, Properties props) {
+<span class="nc" id="L94">        LOGGER.debug(&quot;Property set '{}'&quot;, key);</span>
+<span class="nc" id="L95">        props.setProperty(key, this.env.getProperty(key));</span>
+<span class="nc" id="L96">    }</span>
+
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) {
+<span class="nc" id="L101">        this.context = applicationContext;</span>
+<span class="nc" id="L102">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

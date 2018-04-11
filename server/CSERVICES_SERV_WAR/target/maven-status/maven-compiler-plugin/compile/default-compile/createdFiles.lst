@@ -1,0 +1,3 @@
+com\bnp\cservices\backend\config\MainConfig.class
+com\bnp\cservices\backend\config\ApplicationConfig.class
+com\bnp\cservices\backend\SpringBootServicesWebApplication.class

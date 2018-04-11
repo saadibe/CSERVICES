@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<applicationProperties>
+	<!-- ====================================== -->
+	<!-- DEFAULT VARIABLES FOR ALL ENVIRONMENTS -->
+	<!-- ====================================== -->
+	<Environment name="cross"><!-- do not change this name -->
+		<Properties node="cross"><!-- do not change this name -->
+			
+			<!-- log4j.properties -->
+			<Property name="logback#logbackdefaultLogger" value="STDOUT"/>
+			<Property name="logback#logbackbackendFile" value="CSERVICES-backend.log"/>
+			<Property name="logback#logbackbackendfullFile" value="CSERVICES-backend-full.log"/>			
+			<Property name="logback#logback.level.root" value="DEBUG"/>
+			<Property name="logback#logback.level.com.bnp.cservices" value="DEBUG"/>
+			
+			<!--  spring boot applicationProperties -->
+			<Property name="springboot#serverport" value="9020"/>
+			<Property name="springboot#contextpath" value="/CSERVICES-backend-webapp"/>
+			<Property name="springboot#sesame.service.url" value="https://sesame-services-etudes-assurance.dev.echonet:10449"/>
+			<Property name="springboot#database.url" value="jdbc:h2:file:C:/temp/angular_archetype/h2/application;IFEXISTS=FALSE;AUTO_SERVER=TRUE;"/>
+			<Property name="springboot#database.usrname" value="SA"/>
+			<Property name="springboot#database.password" value=""/>
+			<Property name="springboot#database.driver" value="org.h2.Driver"/>
+			
+			<!-- Used Only by ARA when valorize the shared files -->
+			<Property name="APPLI_VALORIZE_INCLUDE_EXTENSIONS" value="${application-properties.includeExtensions}"/>
+			<Property name="APPLI_VALORIZE_ENCODING" value="${application-properties.encoding}"/>			
+			
+			<!-- application-checker.properties -->
+			<Property name="spring/application-checker#ClasspathResourceChecker" value="log4j"/>
+			<Property name="spring/application-checker#DbChecker" value="java:comp/env/jdbc/helloworld"/>
+			<Property name="spring/application-checker#URLChecker" value="https://cip-nexus-assurance.is.echonet/"/>
+			
+			<!-- application.properties -->
+			<Property name="application#spring.application.name" value="CSERVICES-backend-webapp"/>
+			
+		</Properties>
+	</Environment>
+	
+	<!-- ============= -->
+	<!-- ENV VARIABLES -->
+	<!-- ============= -->	
+	<Environment name="DEV">
+		<!-- VARIABLES DEFINED FOR ALL NODES -->
+		<Properties node="cross"><!-- do not change this name -->
+			
+		</Properties>
+	</Environment>
+	
+	<Environment name="INT">
+		<!-- VARIABLES DEFINED FOR ALL NODES -->
+		<Properties node="cross"><!-- do not change this name -->
+			
+			
+			
+		</Properties>
+	</Environment>
+	
+	<Environment name="REC">
+		<!-- VARIABLES DEFINED FOR ALL NODES -->
+		<Properties node="cross"><!-- do not change this name -->
+			
+		</Properties>
+	</Environment>
+	
+	<Environment name="PPROD">
+		<!-- VARIABLES DEFINED FOR ALL NODES -->
+		<Properties node="cross"><!-- do not change this name -->
+			
+		</Properties>
+	</Environment>
+	
+	<Environment name="PROD">
+		<!-- VARIABLES DEFINED FOR ALL NODES -->
+		<Properties node="cross"><!-- do not change this name -->
+			
+		</Properties>
+	</Environment>
+</applicationProperties>

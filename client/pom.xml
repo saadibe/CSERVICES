@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.bnp</groupId>
+        <artifactId>CSERVICES</artifactId>
+        <version>1.0.0-0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>CSERVICES_angular</artifactId>
+    <packaging>jar</packaging>
+
+    <build>
+        <plugins>
+            <!-- install and launch the Angular (nodejs/webpack) build -->
+            <!-- This is really an awfull techno. I have to say I did not agreed with it. -->
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.6</version>
+                <configuration>
+                    <nodeVersion>8.10.0-0</nodeVersion>
+                    <workingDirectory>.</workingDirectory>
+                    <installDirectory>target</installDirectory>
+                    <downloadRoot>${repo.url}/BNPPA_REF/com/bpc/cij/pm-pkg/node/</downloadRoot>
+                </configuration>
+                <executions>
+
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>npm ssl</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>config set strict-ssl false</arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution> <!-- NPM cache setup to avoid used of C:\Users\UID\AppData\Roaming\npm-cache -->
+                        <id>npm config cache</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>config set cache C:\APPS\IC\repository-npm --global</arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>npm config registry</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>config set registry https://cip-nexus-assurance.is.echonet/repository/ALL_NPM/</arguments>
+                        </configuration>
+                    </execution>
+					
+                    <execution>
+                        <id>npm node-sass config</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>config set sass_binary_dir C:\APPS\IC\Node-sass</arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build-prod</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>dist</directory>
+                <targetPath>static</targetPath>
+            </resource>
+        </resources>
+    </build>
+
+    
+</project>

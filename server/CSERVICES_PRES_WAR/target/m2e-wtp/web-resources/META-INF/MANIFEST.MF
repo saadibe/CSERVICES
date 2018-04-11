@@ -1,0 +1,58 @@
+Manifest-Version: 1.0
+Implementation-Title: CSERVICES_PRES_WAR
+Implementation-Version: 1.0.0-0-SNAPSHOT
+Built-By: a03150
+Implementation-Vendor-Id: com.bnp
+Class-Path: CSERVICES_COMMON-1.0.0-0-SNAPSHOT.jar spring-core-5.0.3.RE
+ LEASE.jar spring-jcl-5.0.3.RELEASE.jar spring-context-5.0.3.RELEASE.j
+ ar spring-expression-5.0.3.RELEASE.jar slf4j-api-1.7.21.jar CSERVICES
+ _angular-1.0.0-0-SNAPSHOT.jar spring-boot-starter-web-2.0.0.RELEASE.j
+ ar spring-boot-starter-2.0.0.RELEASE.jar spring-boot-2.0.0.RELEASE.ja
+ r spring-boot-autoconfigure-2.0.0.RELEASE.jar spring-boot-starter-log
+ ging-2.0.0.RELEASE.jar logback-classic-1.2.3.jar logback-core-1.2.3.j
+ ar log4j-to-slf4j-2.10.0.jar log4j-api-2.10.0.jar jul-to-slf4j-1.7.25
+ .jar javax.annotation-api-1.3.2.jar snakeyaml-1.19.jar spring-boot-st
+ arter-json-2.0.0.RELEASE.jar jackson-databind-2.9.4.jar jackson-annot
+ ations-2.9.0.jar jackson-core-2.9.4.jar jackson-datatype-jdk8-2.9.4.j
+ ar jackson-datatype-jsr310-2.9.4.jar jackson-module-parameter-names-2
+ .9.4.jar hibernate-validator-6.0.7.Final.jar validation-api-2.0.1.Fin
+ al.jar jboss-logging-3.3.0.Final.jar classmate-1.3.1.jar spring-web-5
+ .0.3.RELEASE.jar spring-webmvc-5.0.3.RELEASE.jar spring-boot-starter-
+ actuator-2.0.0.RELEASE.jar spring-boot-actuator-autoconfigure-2.0.0.R
+ ELEASE.jar spring-boot-actuator-2.0.0.RELEASE.jar micrometer-core-1.0
+ .1.jar HdrHistogram-2.1.10.jar LatencyUtils-2.0.3.jar spring-boot-sta
+ rter-aop-2.0.0.RELEASE.jar spring-aop-5.0.4.RELEASE.jar aspectjweaver
+ -1.8.13.jar gson-2.8.1.jar archetype-security-sesame-authentication-p
+ rovider-1.0.1-0.jar archetype-security-sesame-service-1.0.1-0.jar arc
+ hetype-security-sesame-authentication-1.0.1-0.jar BPC_NRJ_SESAME_AUTH
+ ENTICATION_JAXWS_2_0_WSCLIENT-2.0.jar cxf-rt-frontend-jaxws-2.2.11.ja
+ r xml-resolver-1.2.jar geronimo-jaxws_2.1_spec-1.0.jar geronimo-activ
+ ation_1.1_spec-1.0.2.jar geronimo-ws-metadata_2.0_spec-1.1.2.jar cxf-
+ api-2.2.11.jar cxf-common-utilities-2.2.11.jar geronimo-stax-api_1.0_
+ spec-1.0.1.jar wsdl4j-1.6.2.jar XmlSchema-1.4.7.jar geronimo-annotati
+ on_1.0_spec-1.1.1.jar wstx-asl-3.2.9.jar neethi-2.0.4.jar cxf-common-
+ schemas-2.2.11.jar cxf-rt-core-2.2.11.jar jaxb-impl-2.1.13.jar geroni
+ mo-javamail_1.4_spec-1.6.jar cxf-rt-bindings-soap-2.2.11.jar cxf-tool
+ s-common-2.2.11.jar cxf-rt-databinding-jaxb-2.2.11.jar jaxb-api-2.1.j
+ ar cxf-rt-bindings-xml-2.2.11.jar cxf-rt-frontend-simple-2.2.11.jar c
+ xf-rt-ws-addr-2.2.11.jar saaj-api-1.3.jar saaj-impl-1.3.2.jar cxf-rt-
+ transports-http-2.2.11.jar archetype-security-sesame-authorization-1.
+ 0.1-0.jar BPC_NRJ_SESAME_AUTHORIZATION_JAXWS_2_0_WSCLIENT-1.0.jar arc
+ hetype-security-sesame-identification-1.0.1-0.jar BPC_NRJ_SESAME_IDEN
+ TITY_JAXWS_2_0_WSCLIENT-1.0.jar archetype-security-manager-1.0.1-0.ja
+ r archetype-security-common-1.0.1-0.jar spring-boot-starter-security-
+ 2.0.0.RELEASE.jar spring-security-config-5.0.3.RELEASE.jar spring-sec
+ urity-web-5.0.3.RELEASE.jar spring-security-core-5.0.3.RELEASE.jar sp
+ ring-beans-5.0.3.RELEASE.jar archetype-security-generic-authenticatio
+ n-provider-1.0.1-0.jar BNPPA_CINRJ_HEALTHCHECK-5.10.jar BNPPA_CINRJ_D
+ ATAACCESS-5.10.jar BNPPA_CINRJ_CORE-5.10.jar jdo-2.0.jar regexp-ccw-p
+ atch-1.0.jar spring-tx-5.0.3.RELEASE.jar BNPPA_CINRJ_SERVICES_COMMON-
+ 5.10.jar BNPPA_CINRJ_SERVICES_CONSUMER-5.10.jar cglib-2.1_3.jar asm-1
+ .5.3.jar commons-lang-2.4.jar commons-logging-1.1.1.jar log4j-1.2.15.
+ jar jms-1.1.jar jmxtools-1.2.1.jar jmxri-1.2.1.jar spring-jdbc-3.1.4.
+ RELEASE.jar
+Build-Jdk: 1.8.0_66
+Created-By: Maven Integration for Eclipse
+Main-Class: com.bnp.cservices.frontend.SpringBootPresentationWebApplic
+ ation
+

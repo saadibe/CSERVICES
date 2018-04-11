@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="classpath*:properties/spring/_GenericApplicationChecker_.xml" />
+
+	<bean id="RemoteCheckProcessor" class="com.bnppa.cinrj.check.service.RemoteCheckProcessor">
+		<property name="checkCommands">
+			<list>
+				<ref bean="BasicChecker" /><!-- valeur de test = 1 -->
+				<ref bean="ClasspathResourceChecker" /><!-- valeur de test = 2 -->
+				<ref bean="DBChecker" /><!-- valeur de test = 4 -->
+				<ref bean="URLChecker" /><!-- valeur de test = 16 -->
+			</list>
+		</property>
+		<property name="testsForAlteon">
+			<value>1</value>
+		</property>
+
+	</bean>
+
+	<bean id="ClasspathResourceChecker" class="com.bnppa.cinrj.check.action.ClasspathResourceChecker">
+		<property name="resourceName">
+			<value>log4j</value>
+		</property>
+	</bean>
+
+	<bean id="DBChecker" class="com.bnppa.cinrj.check.action.DBChecker">
+		<property name="jndiName">
+			<value>java:comp/env/jdbc/helloworld</value>
+		</property>
+	</bean>
+
+	<bean id="URLChecker" class="com.bnppa.cinrj.check.action.URLChecker">
+		<property name="url">
+			<value>https://cip-nexus-assurance.is.echonet/</value>
+		</property>
+	</bean>
+	
+	<!-- Service appelé par le RemoteChecher : service impl -->
+	<bean id="applicationcheckerservice" 
+			class="com.bnppa.cinrj.check.service.ApplicationCheckerServiceImpl">
+		<property name="remoteCheckProcessor" ref="RemoteCheckProcessor" />
+	</bean>
+
+</beans>

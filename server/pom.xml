@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.bnp</groupId>
+        <artifactId>CSERVICES</artifactId>
+        <version>1.0.0-0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>CSERVICES-server</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <application-properties.version>1.11</application-properties.version>
+        <contextRoot.serv>CSERVICES_SERV_WAR</contextRoot.serv>
+	<contextRoot.pres>CSERVICES_PRES_WAR</contextRoot.pres>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>CSERVICES_ITF</artifactId>
+                <version>1.0.0-0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>CSERVICES_COMMON</artifactId>
+                <version>1.0.0-0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>CSERVICES_SERV_WS</artifactId>
+                <version>1.0.0-0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>CSERVICES_SERV_DATABASE</artifactId>
+                <version>1.0.0-0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>CSERVICES_SERV_SERVICES</artifactId>
+                <version>1.0.0-0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>CSERVICES-database-db</artifactId>
+                <version>1.0.0-0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>CSERVICES-database-entities</artifactId>
+                <version>1.0.0-0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>CSERVICES-database-managers</artifactId>
+                <version>1.0.0-0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.bnppa.ft.cinrj.cinrj-api.mod</groupId>
+                <artifactId>BNPPA_CINRJ_HEALTHCHECK</artifactId>
+                <version>${cinrj.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+	
+    <build>
+        <plugins>
+            <!-- Quality plugins -->
+            <plugin> 
+                <groupId>org.apache.maven.plugins</groupId> 
+                <artifactId>maven-checkstyle-plugin</artifactId> 
+                <executions> 
+                    <execution> 
+                        <id>validate</id> 
+                        <phase>validate</phase> 
+                        <configuration> 
+                            <configLocation>${checkstyle.directory}</configLocation> 
+                            <consoleOutput>true</consoleOutput> 
+                            <encoding>${project.build.sourceEncoding}</encoding> 
+                            <failsOnError>true</failsOnError> 
+                            <linkXRef>true</linkXRef> 
+                        </configuration> 
+                        <goals> 
+                            <goal>check</goal> 
+                        </goals> 
+                    </execution> 
+                </executions> 
+            </plugin> 
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting> 
+        <plugins> 
+            <plugin> 
+                <groupId>org.apache.maven.plugins</groupId> 
+                <artifactId>maven-checkstyle-plugin</artifactId> 
+                <version>${checkstyle.version}</version> 
+                <reportSets> 
+                    <reportSet> 
+                        <reports> 
+                            <report>checkstyle</report> 
+                        </reports> 
+                    </reportSet> 
+                </reportSets> 
+            </plugin> 
+        </plugins> 
+    </reporting> 
+
+
+  <modules>
+    <module>CSERVICES_COMMON</module>
+    <module>CSERVICES_ITF</module>
+    <module>CSERVICES_DATABASE</module>
+    <module>CSERVICES_SERV_SERVICES</module>
+    <module>CSERVICES_SERV_WAR</module>
+    <module>CSERVICES_SERV_EAR</module>
+    <module>CSERVICES_SERV_WS</module>
+    <!-- <module>CSERVICES_PRES_WAR</module>--> 
+    <!-- <module>CSERVICES_PRES_EAR</module>-->
+  </modules>
+</project>

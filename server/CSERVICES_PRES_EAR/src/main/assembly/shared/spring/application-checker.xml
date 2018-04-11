@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	"
+>
+	<import resource="classpath*:properties/spring/_GenericApplicationChecker_.xml"/>
+
+	<bean id="HttpCheckProcessor" class="com.bnppa.cinrj.check.http.HttpCheckProcessor">
+		<property name="checkCommands">
+			<list>
+				<ref bean="BasicChecker"/> <!-- valeur de test = 1 -->
+				<ref bean="SesameURLChecker"/> <!--  valeur de test = 2 -->
+				<ref bean="RemoteCheckerAlteon"/> <!--  valeur de test = 4 -->
+				<ref bean="RemoteCheckerAll"/> <!--  valeur de test = 8 -->
+			</list>
+		</property>
+		<property name="testsForAlteon">
+ 		     <value>@_spring/application-checker#HttpCheckProcessor-testsForAlteon_@</value>
+	    </property>
+	    
+	    <property name="remoteService" ref="ApplicationCheckerServiceCaller" />
+	    
+	    <property name="localService" ref="applicationCheckerServiceLocal" />
+	</bean>
+	
+	<bean id="SesameURLChecker" class="com.bnppa.cinrj.check.action.URLChecker">
+		<property name="url">
+			<value>@_spring/application-checker#SesameURLChecker_@</value>
+		</property>
+	</bean>	
+
+	<bean id="RemoteCheckerAlteon" class="com.bnppa.cinrj.check.action.RemoteChecker">
+	    <property name="remoteCheckerType">
+	        <value>alteon</value>
+	    </property>
+	</bean>
+	
+	<bean id="RemoteCheckerAll" class="com.bnppa.cinrj.check.action.RemoteChecker">
+	    <property name="remoteCheckerType">
+	        <value>@_spring/application-checker#RemoteCheckerAll-remoteCheckerType_@</value>
+	    </property>
+	</bean>
+	
+	<bean id="applicationCheckerServiceLocal"
+	    class="com.bnppa.cinrj.check.service.ApplicationCheckerServiceImpl" />
+
+	
+	<bean id="ApplicationCheckerServiceCaller"
+	    class="com.bnppa.cinrj.services.consumer.proxy.CINRJRemotingProxyFactoryBean">
+	    <property name="serviceCallerObj" ref="RemoteInvoker" />
+	    <property name="serviceInterface">
+	        <value>
+	            com.bnppa.cinrj.check.service.ApplicationCheckerService
+	        </value>
+	    </property>
+	</bean>
+</beans>

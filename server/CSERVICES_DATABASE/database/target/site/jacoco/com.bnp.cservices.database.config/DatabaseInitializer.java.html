@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DatabaseInitializer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CSERVICES-database-db</a> &gt; <a href="index.source.html" class="el_package">com.bnp.cservices.database.config</a> &gt; <span class="el_source">DatabaseInitializer.java</span></div><h1>DatabaseInitializer.java</h1><pre class="source lang-java linenums">package com.bnp.cservices.database.config;
+
+import org.flywaydb.core.Flyway;
+import org.flywaydb.core.api.FlywayException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Class in charge of the database initialization.
+ */
+public class DatabaseInitializer {
+
+<span class="fc" id="L13">    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseInitializer.class.getCanonicalName());</span>
+
+    private final Flyway flyway;
+
+
+    /**
+     * Instantiate the database initializer engine.
+     * Uses Flyway to set up the database.
+     *
+     * @param flyway the flyway engine.
+     */
+<span class="fc" id="L24">    public DatabaseInitializer(Flyway flyway) {</span>
+<span class="fc" id="L25">        this.flyway = flyway;</span>
+<span class="fc" id="L26">    }</span>
+
+
+    /**
+     * Create the database schema if it not exists then executes the The SQL scripts from the last one executed.
+     */
+    public void initialize() {
+<span class="fc" id="L33">        this.initializeSchema();</span>
+<span class="fc" id="L34">        this.initializeTables();</span>
+<span class="fc" id="L35">    }</span>
+
+
+    /**
+     * Creates the Database schema if required.
+     */
+    private void initializeSchema() {
+        try {
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            if (this.flyway.isBaselineOnMigrate()) {</span>
+<span class="fc" id="L44">                LOGGER.info(&quot;Initialization of the DB Schema&quot;);</span>
+<span class="fc" id="L45">                this.flyway.baseline();</span>
+<span class="fc" id="L46">                LOGGER.info(&quot;Initialization of the DB Schema succeeded&quot;);</span>
+            }
+        }
+<span class="fc" id="L49">        catch (FlywayException ex) {</span>
+<span class="fc" id="L50">            LOGGER.error(&quot;Error while initializing the database schema&quot;, ex);</span>
+<span class="fc" id="L51">        }</span>
+<span class="fc" id="L52">    }</span>
+
+
+    /**
+     * Executes SQL scripts one by one (starts from the last one executed successfully).
+     */
+    private void initializeTables() {
+        try {
+<span class="fc" id="L60">            LOGGER.info(&quot;Database table update&quot;);</span>
+<span class="fc" id="L61">            this.flyway.migrate();</span>
+<span class="fc" id="L62">            LOGGER.info(&quot;Database tables successfully updated&quot;);</span>
+        }
+<span class="fc" id="L64">        catch (FlywayException ex) {</span>
+<span class="fc" id="L65">            LOGGER.error(&quot;Error while updating the database&quot;, ex);</span>
+<span class="fc" id="L66">        }</span>
+<span class="fc" id="L67">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

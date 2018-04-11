@@ -1,0 +1,3 @@
+com\bnp\cservices\database\config\FlywayConfig.class
+com\bnp\cservices\database\config\DatabaseInitializer.class
+com\bnp\cservices\database\config\DatabaseConfig.class

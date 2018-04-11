@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="5.5">
+<file name="C:\archetype3tiers\CSERVICES\server\CSERVICES_SERV_WAR\src\main\java\com\bnp\cservices\backend\config\ApplicationConfig.java">
+</file>
+<file name="C:\archetype3tiers\CSERVICES\server\CSERVICES_SERV_WAR\src\main\java\com\bnp\cservices\backend\config\MainConfig.java">
+</file>
+<file name="C:\archetype3tiers\CSERVICES\server\CSERVICES_SERV_WAR\src\main\java\com\bnp\cservices\backend\SpringBootServicesWebApplication.java">
+</file>
+</checkstyle>

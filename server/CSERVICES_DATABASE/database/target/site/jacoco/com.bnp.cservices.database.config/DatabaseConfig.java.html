@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DatabaseConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CSERVICES-database-db</a> &gt; <a href="index.source.html" class="el_package">com.bnp.cservices.database.config</a> &gt; <span class="el_source">DatabaseConfig.java</span></div><h1>DatabaseConfig.java</h1><pre class="source lang-java linenums">package com.bnp.cservices.database.config;
+
+import com.bnp.cservices.config.SpringConfig;
+import com.jolbox.bonecp.BoneCPConfig;
+import com.jolbox.bonecp.BoneCPDataSource;
+import java.util.Properties;
+import javax.sql.DataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
+import org.springframework.instrument.classloading.LoadTimeWeaver;
+import org.springframework.jdbc.datasource.lookup.DataSourceLookupFailureException;
+import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.Database;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+/**
+ * The application database's configuration.
+ *
+ * @author chloe.mahalin@itametis.com
+ */
+@Import({
+    FlywayConfig.class
+})
+@PropertySource(
+        encoding = &quot;UTF-8&quot;,
+        value = &quot;classpath:database.properties&quot;
+)
+@EnableTransactionManagement
+@Configuration
+public class DatabaseConfig extends SpringConfig {
+
+<span class="fc" id="L45">    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseConfig.class.getCanonicalName());</span>
+
+    public final static String UNIT_NAME = &quot;my-unit&quot;;
+
+    /**
+     * Initiate the database configuration and connexion.
+     *
+     * @param environment the Spring environment.
+     */
+    public DatabaseConfig(Environment environment) {
+<span class="fc" id="L55">        super(environment);</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * JPA &amp; HIBERNATE CONFIGURATION - Normaly defined inside properties files. Set the Jpa properties from the property
+     * file.
+     *
+     * @return the properties.
+     */
+    @Bean
+    public Properties jpaProperties() {
+<span class="fc" id="L66">        Properties props = new Properties();</span>
+
+<span class="fc" id="L68">        super.putProperties(&quot;hibernate.dialect&quot;, props);</span>
+<span class="fc" id="L69">        super.putProperties(&quot;hibernate.hbm2ddl.auto&quot;, props);</span>
+<span class="fc" id="L70">        props.setProperty(&quot;hibernate.enable_lazy_load_no_trans&quot;, &quot;true&quot;);</span>
+<span class="fc" id="L71">        props.setProperty(&quot;org.hibernate.flushMode&quot;, &quot;AUTO&quot;);</span>
+<span class="fc" id="L72">        props.setProperty(&quot;hibernate.default_schema&quot;, super.getContext().getBean(&quot;schemaName&quot;, String.class));</span>
+
+<span class="fc" id="L74">        LOGGER.info(&quot;Hibernate JPA Properties loaded&quot;);</span>
+<span class="fc" id="L75">        return props;</span>
+    }
+
+    /**
+     * SPRING ADAPTER - Spring object wrapping the Hibernate loader. Load the vendor. Spring way to map Hibernate stuff
+     * behind JPA interface.
+     *
+     * @return the jpa vendor.
+     */
+    @Bean
+    public JpaVendorAdapter jpaVendorAdapter() {
+<span class="fc" id="L86">        HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();</span>
+
+<span class="fc" id="L88">        jpaVendorAdapter.setDatabase(Database.ORACLE);</span>
+<span class="fc" id="L89">        jpaVendorAdapter.setShowSql(super.getProperty(&quot;hibernate.show.sql&quot;, Boolean.class));</span>
+<span class="fc" id="L90">        jpaVendorAdapter.setDatabasePlatform(super.getProperty(&quot;hibernate.dialect&quot;));</span>
+<span class="fc" id="L91">        jpaVendorAdapter.setGenerateDdl(false);</span>
+
+<span class="fc" id="L93">        LOGGER.info(&quot;Hibernate JPA Adapter loaded&quot;);</span>
+<span class="fc" id="L94">        return jpaVendorAdapter;</span>
+    }
+
+    /**
+     * SPRING AOP WEAVER.
+     *
+     * @return the weaver.
+     */
+    @Bean
+    public LoadTimeWeaver loadTimeWeaver() {
+<span class="fc" id="L104">        LOGGER.info(&quot;Spring Load Time Weaver loaded&quot;);</span>
+<span class="fc" id="L105">        return new InstrumentationLoadTimeWeaver();</span>
+    }
+
+    /**
+     * SPRING CONTAINER - Factory of JPA EntityManagerFactory. An entity Manager factory creates entity Manager. This
+     * factory creates the factory.
+     *
+     * @return the factory of entity Manager factory.
+     */
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        // Ensure DB is up before any instance of Hibernate
+<span class="nc" id="L117">        this.getContext().getBean(&quot;databaseInitializer&quot;, DatabaseInitializer.class).initialize();</span>
+<span class="nc" id="L118">        LOGGER.info(&quot;Database Schema migrated by Flyway&quot;);</span>
+
+        // Spring + Hibernate part
+<span class="nc" id="L121">        LocalContainerEntityManagerFactoryBean container = new LocalContainerEntityManagerFactoryBean();</span>
+
+<span class="nc" id="L123">        container.setJpaVendorAdapter(this.jpaVendorAdapter());</span>
+<span class="nc" id="L124">        container.setPersistenceUnitName(UNIT_NAME);</span>
+<span class="nc" id="L125">        container.setPackagesToScan(&quot;com.bnp.cservices.entities&quot;);</span>
+<span class="nc" id="L126">        container.setDataSource(this.getContext().getBean(&quot;dataSource&quot;, DataSource.class));</span>
+<span class="nc" id="L127">        container.setLoadTimeWeaver(this.loadTimeWeaver());</span>
+<span class="nc" id="L128">        container.setJpaProperties(this.jpaProperties());</span>
+
+        // Force reload of Container Factory configuration =&gt; so perform a double scan of entity but leave in order to prevent mistake even
+        // if those one a very unprobable :
+<span class="nc" id="L132">        container.afterPropertiesSet();</span>
+
+<span class="nc" id="L134">        LOGGER.info(&quot;Spring Container of EntityManagerFactory loaded&quot;);</span>
+
+<span class="nc" id="L136">        LOGGER.info(&quot;END OF DATABASE INITIALISATION&quot;);</span>
+<span class="nc" id="L137">        return container;</span>
+    }
+
+    /**
+     * The transaction manager. Processes functional transaction grouped under an @Transactionnal annotation.
+     *
+     * @return the transaction manager.
+     */
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+<span class="nc" id="L147">        JpaTransactionManager transactionManager = new JpaTransactionManager();</span>
+
+<span class="nc" id="L149">        transactionManager.setPersistenceUnitName(UNIT_NAME);</span>
+<span class="nc" id="L150">        transactionManager.setEntityManagerFactory(this.entityManagerFactory().getObject());</span>
+
+<span class="nc" id="L152">        return transactionManager;</span>
+    }
+
+    /**
+     * The type of exception managed for persistence.
+     *
+     * @return the exception.
+     */
+    @Bean
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+<span class="fc" id="L162">        return new PersistenceExceptionTranslationPostProcessor();</span>
+    }
+
+    /**
+     * Return the unit name.
+     *
+     * @return the unit name.
+     */
+    @Bean
+    public String unitName() {
+<span class="nc" id="L172">        return UNIT_NAME;</span>
+    }
+
+    ///!!!!!!!!!!!!!!!!!! DATA SOURCE JNDI OR NOT !!!!!!!!!!!!!!!!!!///
+    /**
+     * Configure Data source / Connection pool. BONECP. For dev purpose only. The Datasource must be retrieved from
+     * JNDI.
+     *
+     * @return the Connection pool configuration.
+     */
+    @Bean
+    public BoneCPConfig connectionPoolConfig() {
+<span class="nc" id="L184">        LOGGER.info(&quot;STARTING OF DATABASE INITIALISATION&quot;);</span>
+
+<span class="nc" id="L186">        BoneCPConfig config = new BoneCPConfig();</span>
+
+        try {
+            // load the database driver (make sure this is in your classpath!)
+<span class="nc" id="L190">            Class.forName(super.getProperty(&quot;database.driver&quot;));</span>
+<span class="nc" id="L191">        } catch (Exception e) {</span>
+<span class="nc" id="L192">            LOGGER.error(&quot;No driver found in classpath&quot;);</span>
+<span class="nc" id="L193">        }</span>
+
+        // Database instance
+<span class="nc" id="L196">        config.setJdbcUrl(super.getProperty(&quot;database.url&quot;));</span>
+
+        // Database user
+<span class="nc" id="L199">        config.setUsername(super.getProperty(&quot;database.user&quot;));</span>
+<span class="nc" id="L200">        config.setPassword(super.getProperty(&quot;database.password&quot;));</span>
+
+        // Database configuration
+<span class="nc" id="L203">        config.setMinConnectionsPerPartition(super.getProperty(&quot;database.min.connections.per.partition&quot;, Integer.class));</span>
+<span class="nc" id="L204">        config.setMaxConnectionsPerPartition(super.getProperty(&quot;database.max.connections.per.partition&quot;, Integer.class));</span>
+<span class="nc" id="L205">        config.setPartitionCount(super.getProperty(&quot;database.partition.number&quot;, Integer.class));</span>
+<span class="nc" id="L206">        config.setAcquireIncrement(super.getProperty(&quot;database.acquire.increment&quot;, Integer.class));</span>
+
+        //With oracle, to avoid sql error
+        // This should keep idle connections from timing out
+<span class="nc" id="L210">        config.setConnectionTestStatement(&quot;select 1 from DUAL&quot;);</span>
+<span class="nc" id="L211">        config.setTransactionRecoveryEnabled(true);</span>
+        // Disable bugged BoneCP 0.8.0 unclosed connection tracking
+<span class="nc" id="L213">        config.setDisableConnectionTracking(true);</span>
+
+<span class="nc" id="L215">        LOGGER.info(&quot;Bone-CP Configuration loaded&quot;);</span>
+<span class="nc" id="L216">        return config;</span>
+    }
+
+    /**
+     * Load the Data source / Connection pool for the referential database.
+     *
+     * @return the data source.
+     */
+    @Bean
+    public DataSource dataSource() {
+<span class="nc" id="L226">        LOGGER.info(&quot;DataSource loaded&quot;);</span>
+        try {
+<span class="nc" id="L228">            DataSource jndiDataSource = new JndiDataSourceLookup().getDataSource(this.getContext().getBean(&quot;datasourceJndiName&quot;, String.class));</span>
+<span class="nc" id="L229">            LOGGER.info(&quot;DB - JNDI datasource is OK.&quot;);</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">            if (jndiDataSource == null) {</span>
+<span class="nc" id="L231">                LOGGER.info(&quot;DB - JNDI datasource returned null object - Bone-CP DataSource loaded&quot;);</span>
+<span class="nc" id="L232">                jndiDataSource = new BoneCPDataSource(this.connectionPoolConfig());</span>
+            }
+<span class="nc" id="L234">            return jndiDataSource;</span>
+<span class="nc" id="L235">        } catch (BeansException | DataSourceLookupFailureException e) {</span>
+<span class="nc" id="L236">            LOGGER.info(&quot;Error when lookup JNDI datasource =&gt; Bone-CP DataSource loaded&quot;);</span>
+<span class="nc" id="L237">            return new BoneCPDataSource(this.connectionPoolConfig());</span>
+        }
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>
