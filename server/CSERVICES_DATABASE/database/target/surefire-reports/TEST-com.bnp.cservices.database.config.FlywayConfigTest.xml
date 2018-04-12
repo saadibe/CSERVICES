@@ -5,7 +5,7 @@
     <property name="sun.boot.library.path" value="C:\apps\ic\oraclejdk-x64-8\jre\bin"/>
     <property name="java.vm.version" value="25.66-b17"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\archetype3tiers\CSERVICES\server"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\archetype3tiers\CSERVICES"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\archetype3tiers\CSERVICES\server"/>
+    <property name="user.dir" value="C:\archetype3tiers\CSERVICES"/>
     <property name="java.runtime.version" value="1.8.0_66-b17"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\apps\ic\oraclejdk-x64-8\jre\lib\endorsed"/>
@@ -26,7 +26,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 7"/>
-    <property name="classworlds.conf" value="C:\archetype3tiers\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf1273903160128154485.tmp"/>
+    <property name="classworlds.conf" value="C:\archetype3tiers\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf3448312383540017270.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\apps\ic\oraclejdk-x64-8\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;c:/apps/ic/oraclejdk-x64-8/bin/../jre/bin/server;c:/apps/ic/oraclejdk-x64-8/bin/../jre/bin;c:/apps/ic/oraclejdk-x64-8/bin/../jre/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\AXALTO\Access Client\v5\;C:\Program Files (x86)\AXALTO\Access Client\v5\;C:\Program Files (x86)\Common Files\Check Point\UIFramework 3.0\Bin\;C:\Program Files (x86)\CheckPoint\Endpoint Security\Endpoint Common\bin;C:\APPS\ic\exec\;C:\APPS\ic\package-manager\;C:\Program Files (x86)\Oracle\MySQL\MySQL Utilities 1.3.4\;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\AXALTO\Access Client\v5\;C:\Program Files (x86)\AXALTO\Access Client\v5\;C:\Program Files (x86)\Common Files\Check Point\UIFramework 3.0\Bin\;C:\Program Files (x86)\CheckPoint\Endpoint Security\Endpoint Common\bin;C:\Users\a03150\AppData\Local\Programs\Git\cmd;C:\apps\ic\eclipse-jee-oxygen-x64;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -43,7 +43,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\apps\ic\oraclejdk-x64-8\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Pdev -B -s C:\apps\ic\apache-maven-3.5.2\conf\settings.xml clean install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B -s C:\apps\ic\apache-maven-3.5.2\conf\settings.xml clean install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="fr"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>

@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Built-By: a03150
-Build-Source-Target: 1.8
-Build-Jdk-Home: c:/apps/ic/oraclejdk-x64-8
-Build-Source-Version: 1.8
-Build-Jdk: 1.8
-Created-By: Maven Integration for Eclipse
-
