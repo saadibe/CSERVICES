@@ -78,7 +78,8 @@
         <junit.version>4.12</junit.version>
         <mockito.version>1.10.19</mockito.version>
         <assertJ.version>2.8.0</assertJ.version>
-
+        
+		<classmate.version>1.3.4</classmate.version>
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
         <sonar.dynamicAnalysis>true</sonar.dynamicAnalysis>
     </properties>
@@ -92,11 +93,6 @@
     <dependencyManagement>
         <dependencies>
             <!-- Current project dependencies -->
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>CSERVICES_angular</artifactId>
-                <version>1.0.0-0-SNAPSHOT</version>
-            </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>CSERVICES_SERV</artifactId>
@@ -182,6 +178,7 @@
             </dependency>
 
             <!-- Spring boot -->
+            
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>

@@ -1,0 +1,47 @@
+
+<configuration scan="true" debug="true">
+
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>@_logback#logbackfrontendFile_@</file>
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILEFULL" class="ch.qos.logback.core.FileAppender">
+		<file>@_logback#logbackfrontendfullFile_@</file>
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<!-- insert loggers here -->
+	<!-- <logger name="com.bnp" level="DEBUG">
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<root level="DEBUG">
+		<appender-ref ref="FILEFULL" />
+	</root> -->
+	
+	<logger name="com.bnp" level="@_logback#logback.level.com.bnp_@">
+		<appender-ref ref="@_logback#logbackdefaultLogger_@" />
+	</logger>
+
+	<root level="@_logback#logback.level.root_@">
+		<appender-ref ref="@_logback#logbackdefaultLogger_@" />
+	</root>
+
+</configuration>

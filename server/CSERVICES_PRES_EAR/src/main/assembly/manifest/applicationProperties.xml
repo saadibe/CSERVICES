@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<applicationProperties>
+	<!-- ====================================== -->
+	<!-- DEFAULT VARIABLES FOR ALL ENVIRONMENTS -->
+	<!-- ====================================== -->
+	<Environment name="cross"><!-- do not change this name -->
+		<Properties node="cross"><!-- do not change this name -->
+			
+			<!-- version -->
+			<Property name="maven.project.artifactId" value="${project.artifactId}" />
+			<Property name="maven.project.version" value="${project.version}" />
+			<Property name="maven.timestamp" value="${timestamp}" />
+			<Property name="maven.user" value="${env.USERNAME}" />
+	
+			<!-- log4j.properties -->
+			<Property name="logback#logbackdefaultLogger" value="STDOUT"/>
+			<Property name="logback#logbackfrontendFile" value="CSERVICES-frontend.log"/>
+			<Property name="logback#logbackfrontendfullFile" value="CSERVICES-frontend-full.log"/>			
+			<Property name="logback#logback.level.root" value="DEBUG"/>
+			<Property name="logback#logback.level.com.bnp" value="DEBUG"/>
+			
+			<!--  spring boot applicationProperties -->
+			<Property name="springboot#serverport" value="9010"/>
+			<Property name="springboot#contextpath" value="/CSERVICES-frontend-webapp"/>
+			<Property name="springboot#sesame.service.url" value="https://sesame-services-etudes-assurance.dev.echonet:10449"/>
+			<Property name="springboot#backend.sample.endpoint.url" value="http://localhost:9020/CSERVICES-backend-webapp/v1/samples/json"/>
+			<Property name="springboot#api.endpoint.url" value="http://localhost:9080/CSERVICES_SERV_WAR/"/>
+			
+			<Property name="springboot#authentication.use-saml" value="false"/>
+			<Property name="springboot#authentication.serviceprovider.saml" value="http://localhost:8180/CSERVICES-frontend-webapp"/>
+			<Property name="springboot#authentication.serviceprovider.saml.password" value="nalle123"/>
+			<Property name="springboot#authentication.serviceprovider.saml.defaultkey" value="apollo"/>
+			<Property name="springboot#authentication.provider.issecurityenabled" value="true"/>
+			<Property name="springboot#authentication.provider.appDomain" value="SAF"/>
+			<Property name="springboot#authentication.provider.authenticationType" value="GROUP"/>
+			
+			<!-- application-checker.properties - using binary value to number -->
+			<Property name="spring/application-checker#HttpCheckProcessor-testsForAlteon" value="1"/>
+			<Property name="spring/application-checker#RemoteCheckerAll-remoteCheckerType" value="31"/>
+			<Property name="spring/application-checker#SesameURLChecker" value="https://sesame-services-etudes-assurance.dev.echonet:10449" />
+			
+			<!-- Used Only by ARA when valorize the shared files -->
+			<Property name="APPLI_VALORIZE_INCLUDE_EXTENSIONS" value="${application-properties.includeExtensions}"/>
+			<Property name="APPLI_VALORIZE_ENCODING" value="${application-properties.encoding}"/>
+			
+			<!-- application.properties -->
+			<Property name="application#spring.application.name" value="CSERVICES-frontend-webapp"/>
+			
+		</Properties>
+	</Environment>
+	
+	<!-- ============= -->
+	<!-- ENV VARIABLES -->
+	<!-- ============= -->	
+	<Environment name="DEV">
+		<!-- VARIABLES DEFINED FOR ALL NODES -->
+		<Properties node="cross"><!-- do not change this name -->
+			
+		</Properties>
+	</Environment>
+	
+	<Environment name="INT">
+		<!-- VARIABLES DEFINED FOR ALL NODES -->
+		<Properties node="cross"><!-- do not change this name -->
+			
+		</Properties>
+	</Environment>
+	
+	<Environment name="REC">
+		<!-- VARIABLES DEFINED FOR ALL NODES -->
+		<Properties node="cross"><!-- do not change this name -->
+			
+		</Properties>
+	</Environment>
+	
+	<Environment name="PPROD">
+		<!-- VARIABLES DEFINED FOR ALL NODES -->
+		<Properties node="cross"><!-- do not change this name -->
+			
+		</Properties>
+	</Environment>
+	
+	<Environment name="PROD">
+		<!-- VARIABLES DEFINED FOR ALL NODES -->
+		<Properties node="cross"><!-- do not change this name -->	
+		</Properties>
+	</Environment>
+</applicationProperties>

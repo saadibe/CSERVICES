@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<checkstyle version="5.5">
-<file name="C:\archetype3tiers\CSERVICES\server\CSERVICES_SERV_SERVICES\src\main\java\com\bnp\cservices\backend\services\config\AllServicesConfig.java">
-</file>
-<file name="C:\archetype3tiers\CSERVICES\server\CSERVICES_SERV_SERVICES\src\main\java\com\bnp\cservices\backend\services\config\ServServicesConfig.java">
-</file>
-<file name="C:\archetype3tiers\CSERVICES\server\CSERVICES_SERV_SERVICES\src\main\java\com\bnp\cservices\backend\services\ContactServiceImpl.java">
-</file>
-</checkstyle>
