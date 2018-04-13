@@ -15,11 +15,6 @@
         <!-- internal application dependencies -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>CSERVICES_ITF</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>CSERVICES_COMMON</artifactId>
             <scope>compile</scope>
         </dependency>

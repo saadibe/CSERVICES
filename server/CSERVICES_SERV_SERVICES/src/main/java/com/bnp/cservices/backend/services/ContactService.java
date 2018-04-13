@@ -1,7 +1,7 @@
-package com.bnp.cservices.itf.services;
+package com.bnp.cservices.backend.services;
 
+import com.bnp.cservices.dto.ContactDTO;
 import com.bnp.cservices.exception.MyException;
-import com.bnp.cservices.itf.dto.ContactDTO;
 
 import java.util.List;
 
@@ -21,10 +21,10 @@ public interface ContactService {
     /**
      * Save the given contact in the database.
      *
-     * @param contactDto the description of the contact.
+     * @param contact the description of the contact.
      * @return true is the saving went alright.
      * @throws MyException if an exception is raised.
      */
-    ContactDTO saveContact(ContactDTO contactDto) throws MyException;
+    ContactDTO saveContact(ContactDTO contact) throws MyException;
 
 }

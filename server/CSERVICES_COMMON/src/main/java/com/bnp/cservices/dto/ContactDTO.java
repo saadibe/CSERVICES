@@ -1,4 +1,4 @@
-package com.bnp.cservices.itf.dto;
+package com.bnp.cservices.dto;
 
 import com.bnp.cservices.utils.SerialVersionUID;
 import java.io.Serializable;

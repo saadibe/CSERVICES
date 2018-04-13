@@ -1,9 +1,9 @@
-package com.bnp.cservices.backend.services;
+package com.bnp.cservices.backend.servicesImpl;
 
+import com.bnp.cservices.backend.services.ContactService;
+import com.bnp.cservices.dto.ContactDTO;
 import com.bnp.cservices.entities.Contact;
 import com.bnp.cservices.exception.MyException;
-import com.bnp.cservices.itf.dto.ContactDTO;
-import com.bnp.cservices.itf.services.ContactService;
 import com.bnp.cservices.managers.ContactManager;
 import java.util.ArrayList;
 import java.util.List;

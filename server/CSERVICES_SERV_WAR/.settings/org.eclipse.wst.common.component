@@ -12,9 +12,6 @@
         <dependent-module archiveName="CSERVICES_SERV_SERVICES-1.0.0-0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/CSERVICES_SERV_SERVICES/CSERVICES_SERV_SERVICES">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="CSERVICES_ITF-1.0.0-0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/CSERVICES_ITF/CSERVICES_ITF">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="CSERVICES-database-managers-1.0.0-0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/CSERVICES-database-managers/CSERVICES-database-managers">
             <dependency-type>uses</dependency-type>
         </dependent-module>

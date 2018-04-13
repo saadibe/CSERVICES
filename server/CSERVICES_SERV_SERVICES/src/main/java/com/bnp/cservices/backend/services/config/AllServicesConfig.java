@@ -1,8 +1,8 @@
 package com.bnp.cservices.backend.services.config;
 
-import com.bnp.cservices.backend.services.ContactServiceImpl;
+import com.bnp.cservices.backend.services.ContactService;
+import com.bnp.cservices.backend.servicesImpl.ContactServiceImpl;
 import com.bnp.cservices.config.SpringConfig;
-import com.bnp.cservices.itf.services.ContactService;
 import com.bnp.cservices.managers.ContactManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

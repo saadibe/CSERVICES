@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bnp.cservices.resources.GenericController;
+
 /**
  * This controller maps URL with workflow for applications.
  */

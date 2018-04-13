@@ -1,4 +1,4 @@
-package com.bnp.apiproxy;
+package com.bnp.cservicesproxy;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

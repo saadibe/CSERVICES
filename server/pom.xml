@@ -147,7 +147,6 @@
 
 	<modules>
 		<module>CSERVICES_COMMON</module>
-		<module>CSERVICES_ITF</module>
 		<module>CSERVICES_DATABASE</module>
 		<module>CSERVICES_SERV_SERVICES</module>
 		<module>CSERVICES_SERV_WAR</module>

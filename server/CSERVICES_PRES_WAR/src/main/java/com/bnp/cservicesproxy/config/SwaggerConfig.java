@@ -1,4 +1,4 @@
-package com.bnp.apiproxy.config;
+package com.bnp.cservicesproxy.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,8 +27,8 @@ public class SwaggerConfig {
     public Docket productApi() {
 
         return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("com.bnp.apiproxy"))
-                .paths(regex("/apiproxy.*")).build().apiInfo(metaInfo());
+                .apis(RequestHandlerSelectors.basePackage("com.bnp.cservicesproxy"))
+                .paths(regex("cservicesproxy.*")).build().apiInfo(metaInfo());
     }
 
     /**
